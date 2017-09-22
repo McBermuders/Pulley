@@ -270,7 +270,7 @@ open class PulleyViewController: UIViewController {
     }
     
     /// The maximum amount of opacity when dimming.
-    @IBInspectable public var backgroundDimmingOpacity: CGFloat = 1.0 {
+    @IBInspectable public var backgroundDimmingOpacity: CGFloat = 0.77 {
         didSet {
             
             if self.isViewLoaded
