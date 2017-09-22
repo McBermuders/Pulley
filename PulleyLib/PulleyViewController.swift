@@ -904,7 +904,7 @@ extension PulleyViewController: UIScrollViewDelegate {
             
             let lowestStop = drawerStops.min() ?? 0
             
-            if scrollView.contentOffset.y > partialRevealHeight - lowestStop
+            if scrollView.contentOffset.y > lowestStop
             {
                 // Calculate percentage between partial and full reveal
                 let fullRevealHeight = (self.view.bounds.size.height - topInset)
