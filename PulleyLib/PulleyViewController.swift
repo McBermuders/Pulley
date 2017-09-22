@@ -929,7 +929,7 @@ extension PulleyViewController: UIScrollViewDelegate {
                     (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                     (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                     
-                    backgroundDimmingView.isUserInteractionEnabled = false
+                    backgroundDimmingView.isUserInteractionEnabled = true
                 }
             }
             
