@@ -789,12 +789,16 @@ extension PulleyViewController: PulleyPassthroughScrollViewDelegate {
     
     func viewToReceiveTouch(scrollView: PulleyPassthroughScrollView) -> UIView
     {
+        return backgroundDimmingView
+        /*
         if drawerPosition == .open
         {
             return backgroundDimmingView
         }
+ 
         
         return primaryContentContainer
+         */
     }
 }
 
