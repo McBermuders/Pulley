@@ -270,7 +270,7 @@ open class PulleyViewController: UIViewController {
     }
     
     /// The maximum amount of opacity when dimming.
-    @IBInspectable public var backgroundDimmingOpacity: CGFloat = 0.5 {
+    @IBInspectable public var backgroundDimmingOpacity: CGFloat = 1.0 {
         didSet {
             
             if self.isViewLoaded
@@ -909,7 +909,7 @@ extension PulleyViewController: UIScrollViewDelegate {
                 // Calculate percentage between partial and full reveal
                 let fullRevealHeight = (self.view.bounds.size.height - topInset)
                 
-                let progress = (scrollView.contentOffset.y - (partialRevealHeight - lowestStop)) / (fullRevealHeight - (partialRevealHeight))
+                let progress = (scrollView.contentOffset.y - lowestStop) / (fullRevealHeight)
                 
                 delegate?.makeUIAdjustmentsForFullscreen?(progress: progress)
                 (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
