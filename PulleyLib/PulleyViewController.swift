@@ -902,7 +902,7 @@ extension PulleyViewController: UIScrollViewDelegate {
                 drawerStops.append(collapsedHeight)
             }
             
-            let lowestStop = drawerStops.min() ?? 0
+            let lowestStop = collapsedDrawerHeight()
             
             if scrollView.contentOffset.y > lowestStop
             {
@@ -929,7 +929,7 @@ extension PulleyViewController: UIScrollViewDelegate {
                     (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                     (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                     
-                    backgroundDimmingView.isUserInteractionEnabled = true
+                    backgroundDimmingView.isUserInteractionEnabled = false
                 }
             }
             
