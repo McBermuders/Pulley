@@ -201,22 +201,7 @@ open class PulleyViewController: UIViewController {
             return drawerScrollView.bounds.height
         }
     }
-    
-    /// The background visual effect layer for the drawer. By default this is the extraLight effect. You can change this if you want, or assign nil to remove it.
-    public var drawerBackgroundVisualEffectView: UIVisualEffectView? = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)) {
-        willSet {
-            drawerBackgroundVisualEffectView?.removeFromSuperview()
-        }
-        didSet {
-            
-            if let drawerBackgroundVisualEffectView = drawerBackgroundVisualEffectView, self.isViewLoaded
-            {
-                drawerScrollView.insertSubview(drawerBackgroundVisualEffectView, aboveSubview: drawerShadowView)
-                drawerBackgroundVisualEffectView.clipsToBounds = true
-                drawerBackgroundVisualEffectView.layer.cornerRadius = drawerCornerRadius
-            }
-        }
-    }
+   
     
     /// The inset from the top of the view controller when fully open.
     @IBInspectable public var topInset: CGFloat = 50.0 {
@@ -234,7 +219,6 @@ open class PulleyViewController: UIViewController {
             if self.isViewLoaded
             {
                 self.view.setNeedsLayout()
-                drawerBackgroundVisualEffectView?.layer.cornerRadius = drawerCornerRadius
             }
         }
     }
@@ -402,18 +386,12 @@ open class PulleyViewController: UIViewController {
         backgroundDimmingView.isUserInteractionEnabled = false
         backgroundDimmingView.alpha = 0.0
         
-        drawerBackgroundVisualEffectView?.clipsToBounds = true
         
         dimmingViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PulleyViewController.dimmingViewTapRecognizerAction(gestureRecognizer:)))
         backgroundDimmingView.addGestureRecognizer(dimmingViewTapRecognizer!)
         
         drawerScrollView.addSubview(drawerShadowView)
         
-        if let drawerBackgroundVisualEffectView = drawerBackgroundVisualEffectView
-        {
-            drawerScrollView.addSubview(drawerBackgroundVisualEffectView)
-            drawerBackgroundVisualEffectView.layer.cornerRadius = drawerCornerRadius
-        }
         
         drawerScrollView.addSubview(drawerContentContainer)
         
@@ -521,7 +499,6 @@ open class PulleyViewController: UIViewController {
         }
         
         drawerContentContainer.frame = CGRect(x: 0, y: drawerScrollView.bounds.height - lowestStop, width: drawerScrollView.bounds.width, height: drawerScrollView.bounds.height + bounceOverflowMargin)
-        drawerBackgroundVisualEffectView?.frame = drawerContentContainer.frame
         drawerShadowView.frame = drawerContentContainer.frame
         drawerScrollView.contentSize = CGSize(width: drawerScrollView.bounds.width, height: (drawerScrollView.bounds.height - lowestStop) + drawerScrollView.bounds.height)
         
