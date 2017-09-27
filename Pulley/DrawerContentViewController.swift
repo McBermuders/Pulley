@@ -9,8 +9,13 @@
 import UIKit
 import Pulley
 
-class DrawerContentViewController: UIViewController {
-
+class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOffsetPullDelegate {
+    func mainScrollView(scrollview: UIScrollView) {
+        self.mainScrollView = scrollview
+    }
+    private var mainScrollView: UIScrollView?
+    private var pullToDismiss: PullToDismiss?
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var gripperView: UIView!
@@ -19,16 +24,38 @@ class DrawerContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         gripperView.layer.cornerRadius = 2.5
         separatorHeightConstraint.constant = 1.0 / UIScreen.main.scale
+        pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self)
+        pullToDismiss?.delegatePull = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    var wasDragged: Bool = false
+    func addOffset(addOffset: CGFloat){
+        print("\(addOffset)")
+        wasDragged = true
+        let p = CGPoint(x: self.mainScrollView!.contentOffset.x, y: self.mainScrollView!.contentOffset.y-addOffset)
+        self.mainScrollView?.setContentOffset(p, animated: false)
+        //NotificationCenter.default.post(name: Notification.Name.init("jkjkj"), object: NSNumber(value: addOffset))
+    }
+    
+    func finishedDragging(withVelocity velocity: CGPoint){
+        if wasDragged{
+            wasDragged = false
+            var p = CGPoint.zero
+            self.mainScrollView?.delegate?.scrollViewWillEndDragging!(self.mainScrollView!, withVelocity: velocity, targetContentOffset: &p)
+            self.mainScrollView?.delegate?.scrollViewDidEndDragging!(self.mainScrollView!, willDecelerate: false)
+        }
+
+    }
+
 }
 
 extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {

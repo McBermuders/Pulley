@@ -19,7 +19,7 @@ class PulleyPassthroughScrollView: UIScrollView {
     weak var touchDelegate: PulleyPassthroughScrollViewDelegate?
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        
+        print("hit")
         if let touchDel = touchDelegate
         {
             if touchDel.shouldTouchPassthroughScrollView(scrollView: self, point: point)
@@ -30,4 +30,6 @@ class PulleyPassthroughScrollView: UIScrollView {
         
         return super.hitTest(point, with: event)
     }
+    
+
 }
