@@ -109,6 +109,7 @@ open class PullToDismiss: NSObject {
         case .began:
             startDragging()
         case .changed:
+            print("changing")
             let diff = gesture.translation(in: gesture.view).y
             updateViewPosition(offset: diff)
             gesture.setTranslation(.zero, in: gesture.view)
@@ -147,7 +148,6 @@ open class PullToDismiss: NSObject {
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
         if originY > dismissableHeight || originY > 0 && velocity.y < 0 {
             deleteBackgroundView()
-            targetViewController?.view.detachEdgeShadow()
             proxy = nil
             _ = dismissAction?() ?? dismiss()
         } else if originY != 0.0 {
@@ -156,7 +156,6 @@ open class PullToDismiss: NSObject {
             }) { [weak self] finished in
                 if finished {
                     self?.deleteBackgroundView()
-                    self?.targetViewController?.view.detachEdgeShadow()
                 }
             }
         } else {
@@ -193,6 +192,7 @@ extension PullToDismiss: UIScrollViewDelegate {
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)
                 scrollView.contentOffset.y = -scrollView.contentInset.top
+                print("updateViewPosition \(diff)")
             }
             previousContentOffsetY = scrollView.contentOffset.y
         }
@@ -207,6 +207,7 @@ extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         finishDragging(withVelocity: velocity)
         dragging = false
+        print("scrollViewWillEndDragging")
         previousContentOffsetY = 0.0
     }
 }

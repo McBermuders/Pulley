@@ -43,12 +43,14 @@ class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOf
         wasDragged = true
         let p = CGPoint(x: self.mainScrollView!.contentOffset.x, y: self.mainScrollView!.contentOffset.y-addOffset)
         self.mainScrollView?.setContentOffset(p, animated: false)
+        //tableView.isScrollEnabled = false
         //NotificationCenter.default.post(name: Notification.Name.init("jkjkj"), object: NSNumber(value: addOffset))
     }
     
     func finishedDragging(withVelocity velocity: CGPoint){
         if wasDragged{
             wasDragged = false
+            //tableView.isScrollEnabled = true
             var p = CGPoint.zero
             self.mainScrollView?.delegate?.scrollViewWillEndDragging!(self.mainScrollView!, withVelocity: velocity, targetContentOffset: &p)
             self.mainScrollView?.delegate?.scrollViewDidEndDragging!(self.mainScrollView!, willDecelerate: false)

@@ -22,12 +22,8 @@
 		C6DF73EC1D2E027500735EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6DF73EB1D2E027500735EBC /* Main.storyboard */; };
 		F7D270C11F3218E30035D833 /* PulleyViewController+Nested.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */; };
 		F82875C01F7BB20B00E527BC /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */; };
-		F82875C11F7BB21500E527BC /* BackgroundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875B71F7BB1B000E527BC /* BackgroundEffect.swift */; };
-		F82875C21F7BB22C00E527BC /* EdgeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BB1F7BB1B000E527BC /* EdgeShadow.swift */; };
 		F82875C31F7BB24100E527BC /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */; };
-		F82875C41F7BB27B00E527BC /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875B81F7BB1B000E527BC /* CustomBlurView.swift */; };
 		F82875C51F7BB28100E527BC /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F82875BA1F7BB1B000E527BC /* DelegateProxy.m */; };
-		F82875C61F7BB28A00E527BC /* UIView+EdgeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BE1F7BB1B000E527BC /* UIView+EdgeShadow.swift */; };
 		F82875C71F7BB28D00E527BC /* Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BF1F7BB1B000E527BC /* Unavailable.swift */; };
 		F82875C91F7BB2EA00E527BC /* DelegateProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F82875B91F7BB1B000E527BC /* DelegateProxy.h */; };
 /* End PBXBuildFile section */
@@ -73,14 +69,10 @@
 		C6DF73E91D2DFE7F00735EBC /* DrawerContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerContentViewController.swift; sourceTree = "<group>"; };
 		C6DF73EB1D2E027500735EBC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PulleyViewController+Nested.swift"; path = "PulleyLib/PulleyViewController+Nested.swift"; sourceTree = SOURCE_ROOT; };
-		F82875B71F7BB1B000E527BC /* BackgroundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundEffect.swift; sourceTree = "<group>"; };
-		F82875B81F7BB1B000E527BC /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		F82875B91F7BB1B000E527BC /* DelegateProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
 		F82875BA1F7BB1B000E527BC /* DelegateProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateProxy.m; sourceTree = "<group>"; };
-		F82875BB1F7BB1B000E527BC /* EdgeShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeShadow.swift; sourceTree = "<group>"; };
 		F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
 		F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
-		F82875BE1F7BB1B000E527BC /* UIView+EdgeShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EdgeShadow.swift"; sourceTree = "<group>"; };
 		F82875BF1F7BB1B000E527BC /* Unavailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unavailable.swift; sourceTree = "<group>"; };
 		F82875CA1F7BB37F00E527BC /* Pulley-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pulley-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,14 +156,10 @@
 		F82875B61F7BB1B000E527BC /* pulltodismiss */ = {
 			isa = PBXGroup;
 			children = (
-				F82875B71F7BB1B000E527BC /* BackgroundEffect.swift */,
-				F82875B81F7BB1B000E527BC /* CustomBlurView.swift */,
 				F82875B91F7BB1B000E527BC /* DelegateProxy.h */,
 				F82875BA1F7BB1B000E527BC /* DelegateProxy.m */,
-				F82875BB1F7BB1B000E527BC /* EdgeShadow.swift */,
 				F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */,
 				F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */,
-				F82875BE1F7BB1B000E527BC /* UIView+EdgeShadow.swift */,
 				F82875BF1F7BB1B000E527BC /* Unavailable.swift */,
 			);
 			path = pulltodismiss;
@@ -306,18 +294,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F82875C11F7BB21500E527BC /* BackgroundEffect.swift in Sources */,
 				C6131BB41D30429E002F27F3 /* PrimaryTransitionTargetViewController.swift in Sources */,
 				C6DF73D51D2DE2B500735EBC /* PrimaryContentViewController.swift in Sources */,
 				F82875C01F7BB20B00E527BC /* PullToDismiss.swift in Sources */,
 				F82875C71F7BB28D00E527BC /* Unavailable.swift in Sources */,
-				F82875C21F7BB22C00E527BC /* EdgeShadow.swift in Sources */,
 				C6DF73EA1D2DFE7F00735EBC /* DrawerContentViewController.swift in Sources */,
-				F82875C41F7BB27B00E527BC /* CustomBlurView.swift in Sources */,
 				C6DF73D31D2DE2B500735EBC /* AppDelegate.swift in Sources */,
 				F82875C31F7BB24100E527BC /* ScrollViewDelegateProxy.swift in Sources */,
 				F82875C51F7BB28100E527BC /* DelegateProxy.m in Sources */,
-				F82875C61F7BB28A00E527BC /* UIView+EdgeShadow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
