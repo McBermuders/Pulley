@@ -16,6 +16,11 @@ class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOf
     func mainScrollView(scrollview: UIScrollView, viewController: PulleyViewController) {
         self.mainScrollView = scrollview
         self.pulleyViewController = viewController
+        if let drawer = viewController as? PulleyViewController{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                drawer.setDrawerPosition(position: .open, animated: true)
+            })
+        }
     }
     private var mainScrollView: UIScrollView?
     private var pullToDismiss: PullToDismiss?
@@ -35,6 +40,7 @@ class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOf
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self)
         pullToDismiss?.delegatePull = self
         pullToDismiss?.mainDelegate = self
+
         
     }
 
@@ -80,7 +86,7 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight() -> CGFloat
     {
-        return 68.0
+        return 0.0
     }
     
     func partialRevealDrawerHeight() -> CGFloat
