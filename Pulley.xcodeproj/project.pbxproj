@@ -21,7 +21,7 @@
 		C6DF73EA1D2DFE7F00735EBC /* DrawerContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF73E91D2DFE7F00735EBC /* DrawerContentViewController.swift */; };
 		C6DF73EC1D2E027500735EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6DF73EB1D2E027500735EBC /* Main.storyboard */; };
 		F7D270C11F3218E30035D833 /* PulleyViewController+Nested.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */; };
-		F86D3FA61F7D005D001F413F /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */; };
+		F83BBBAD1F7D88170002681E /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83BBBAC1F7D88170002681E /* PullToDismiss.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		C6DF73E91D2DFE7F00735EBC /* DrawerContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerContentViewController.swift; sourceTree = "<group>"; };
 		C6DF73EB1D2E027500735EBC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PulleyViewController+Nested.swift"; path = "PulleyLib/PulleyViewController+Nested.swift"; sourceTree = SOURCE_ROOT; };
-		F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
+		F83BBBAC1F7D88170002681E /* PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToDismiss.swift; path = PulleyLib/PullToDismiss.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 		355DBF141E40EA4300671CDD /* Pulley */ = {
 			isa = PBXGroup;
 			children = (
-				F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */,
+				F83BBBAC1F7D88170002681E /* PullToDismiss.swift */,
 				355DBF151E40EA4300671CDD /* Pulley.h */,
 				C6131BB71D305995002F27F3 /* PulleyPassthroughScrollView.swift */,
 				F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */,
@@ -262,7 +262,7 @@
 			files = (
 				F7D270C11F3218E30035D833 /* PulleyViewController+Nested.swift in Sources */,
 				355DBF201E40EA5C00671CDD /* PulleyPassthroughScrollView.swift in Sources */,
-				F86D3FA61F7D005D001F413F /* PullToDismiss.swift in Sources */,
+				F83BBBAD1F7D88170002681E /* PullToDismiss.swift in Sources */,
 				355DBF211E40EA5F00671CDD /* PulleyViewController.swift in Sources */,
 				C6C51DDD1F5108980079B57F /* UIView+constrainToParent.swift in Sources */,
 			);
