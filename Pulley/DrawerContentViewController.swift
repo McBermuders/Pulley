@@ -62,7 +62,12 @@ class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOf
         if wasDragged{
             wasDragged = false
             //tableView.isScrollEnabled = true
-            var p = CGPoint.zero
+            var p = CGPoint(x: velocity.x, y: velocity.y)
+            if velocity.y > 0{
+                
+            }else{
+                
+            }
             self.mainScrollView?.delegate?.scrollViewWillEndDragging!(self.mainScrollView!, withVelocity: velocity, targetContentOffset: &p)
             self.mainScrollView?.delegate?.scrollViewDidEndDragging!(self.mainScrollView!, willDecelerate: false)
         }
@@ -89,7 +94,7 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
     
     func drawerPositionDidChange(drawer: PulleyViewController)
     {
-        tableView.isScrollEnabled = drawer.drawerPosition == .open
+        //tableView.isScrollEnabled = drawer.drawerPosition == .open
         
         if drawer.drawerPosition != .open
         {

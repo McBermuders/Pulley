@@ -42,6 +42,7 @@ open class PullToDismiss: NSObject {
 
     fileprivate var viewPositionY: CGFloat = 0.0
     fileprivate var dragging: Bool = false
+    fileprivate var draggedUp: Bool = false
     fileprivate var previousContentOffsetY: CGFloat = 0.0
     fileprivate weak var viewController: UIViewController?
 
@@ -141,6 +142,7 @@ open class PullToDismiss: NSObject {
 
     fileprivate func finishDragging(withVelocity velocity: CGPoint) {
         self.delegatePull?.finishedDragging(withVelocity: velocity)
+        /*
         let originY = targetViewController?.view.frame.origin.y ?? 0.0
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
         if originY > dismissableHeight || originY > 0 && velocity.y < 0 {
@@ -158,6 +160,7 @@ open class PullToDismiss: NSObject {
             self.deleteBackgroundView()
         }
         viewPositionY = 0.0
+ */
     }
 
     private static func viewControllerFromScrollView(_ scrollView: UIScrollView) -> UIViewController? {
@@ -188,12 +191,14 @@ extension PullToDismiss: UIScrollViewDelegate {
             if scrollView.contentOffset.y < -scrollView.contentInset.top || (targetViewController?.view.frame.origin.y ?? 0.0) > 0.0 {
                 updateViewPosition(offset: diff)
                 scrollView.contentOffset.y = -scrollView.contentInset.top
-                print("updateViewPosition \(diff)")
+                print("updateViewPosition 1\(diff)")
+                draggedUp = false
             }else if(self.mainDelegate != nil && self.mainDelegate!.shouldScroll()){
                     //delegate drag or scroll
+                draggedUp = true
                     updateViewPosition(offset: diff)
                     scrollView.contentOffset.y = -scrollView.contentInset.top
-                    print("-updateViewPosition \(diff)")
+                    print("-updateViewPosition 2 \(diff)")
                 
             }
             previousContentOffsetY = scrollView.contentOffset.y
@@ -205,12 +210,18 @@ extension PullToDismiss: UIScrollViewDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         startDragging()
         dragging = true
+        draggedUp = false
         previousContentOffsetY = scrollView.contentOffset.y
     }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if(scrollView.contentOffset.y == 0){
-            finishDragging(withVelocity: velocity)
+        if(scrollView.contentOffset.y == 0 ){
+            //finishDragging(withVelocity: CGPoint.zero)
+            if(draggedUp){
+                finishDragging(withVelocity: CGPoint(x: 0, y: 10000))
+            }else{
+                finishDragging(withVelocity: CGPoint(x: 0, y: 100))
+            }
         }
         dragging = false
         print("scrollViewWillEndDragging")
