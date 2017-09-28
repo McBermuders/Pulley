@@ -100,9 +100,7 @@ private let kPulleyDefaultPartialRevealHeight: CGFloat = 264.0
 
 open class PulleyViewController: UIViewController,PullParentDelegate {
     public func shouldScroll() -> Bool {
-        var collapsedHeight:CGFloat = kPulleyDefaultCollapsedHeight
-        var partialRevealHeight:CGFloat = kPulleyDefaultPartialRevealHeight
-        let drawerStops = [(self.view.bounds.size.height - topInset), collapsedHeight, partialRevealHeight]
+        let drawerStops = [(self.view.bounds.size.height - topInset), collapsedDrawerHeight(), partialRevealDrawerHeight()]
         let lowestStop = drawerStops.min() ?? 0
         let stopToMoveTo = (self.view.bounds.size.height - topInset) - lowestStop
         print("drawerPosition: \(self.drawerScrollView.contentOffset.y)::\(stopToMoveTo)")
@@ -182,10 +180,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             guard let controller = drawerContentViewController else {
                 return
             }
-            if controller is AddOffsetPullDelegate{
-                let c = controller as! AddOffsetPullDelegate
-                c.mainScrollView(scrollview: self.drawerScrollView,viewController: self)
-            }
+
 
             addChildViewController(controller)
             drawerContentContainer.addSubview(controller.view)
@@ -198,6 +193,11 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             {
                 self.view.setNeedsLayout()
                 self.setNeedsSupportedDrawerPositionsUpdate()
+            }
+            
+            if controller is AddOffsetPullDelegate{
+                let c = controller as! AddOffsetPullDelegate
+                c.mainScrollView(scrollview: self.drawerScrollView,viewController: self)
             }
         }
     }
