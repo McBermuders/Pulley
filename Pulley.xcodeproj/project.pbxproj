@@ -21,11 +21,7 @@
 		C6DF73EA1D2DFE7F00735EBC /* DrawerContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF73E91D2DFE7F00735EBC /* DrawerContentViewController.swift */; };
 		C6DF73EC1D2E027500735EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6DF73EB1D2E027500735EBC /* Main.storyboard */; };
 		F7D270C11F3218E30035D833 /* PulleyViewController+Nested.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */; };
-		F82875C01F7BB20B00E527BC /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */; };
-		F82875C31F7BB24100E527BC /* ScrollViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */; };
-		F82875C51F7BB28100E527BC /* DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F82875BA1F7BB1B000E527BC /* DelegateProxy.m */; };
-		F82875C71F7BB28D00E527BC /* Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BF1F7BB1B000E527BC /* Unavailable.swift */; };
-		F82875C91F7BB2EA00E527BC /* DelegateProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F82875B91F7BB1B000E527BC /* DelegateProxy.h */; };
+		F86D3FA61F7D005D001F413F /* PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,12 +65,7 @@
 		C6DF73E91D2DFE7F00735EBC /* DrawerContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerContentViewController.swift; sourceTree = "<group>"; };
 		C6DF73EB1D2E027500735EBC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PulleyViewController+Nested.swift"; path = "PulleyLib/PulleyViewController+Nested.swift"; sourceTree = SOURCE_ROOT; };
-		F82875B91F7BB1B000E527BC /* DelegateProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateProxy.h; sourceTree = "<group>"; };
-		F82875BA1F7BB1B000E527BC /* DelegateProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateProxy.m; sourceTree = "<group>"; };
 		F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToDismiss.swift; sourceTree = "<group>"; };
-		F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
-		F82875BF1F7BB1B000E527BC /* Unavailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unavailable.swift; sourceTree = "<group>"; };
-		F82875CA1F7BB37F00E527BC /* Pulley-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pulley-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +90,7 @@
 		355DBF141E40EA4300671CDD /* Pulley */ = {
 			isa = PBXGroup;
 			children = (
+				F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */,
 				355DBF151E40EA4300671CDD /* Pulley.h */,
 				C6131BB71D305995002F27F3 /* PulleyPassthroughScrollView.swift */,
 				F73B18BC1F31307200E29B1D /* PulleyViewController+Nested.swift */,
@@ -122,8 +114,6 @@
 		C6DF73C61D2DE2B500735EBC = {
 			isa = PBXGroup;
 			children = (
-				F82875CA1F7BB37F00E527BC /* Pulley-Bridging-Header.h */,
-				F82875B61F7BB1B000E527BC /* pulltodismiss */,
 				C6DF73D11D2DE2B500735EBC /* Demo App */,
 				355DBF141E40EA4300671CDD /* Pulley */,
 				C6DF73D01D2DE2B500735EBC /* Products */,
@@ -153,18 +143,6 @@
 			path = Pulley;
 			sourceTree = "<group>";
 		};
-		F82875B61F7BB1B000E527BC /* pulltodismiss */ = {
-			isa = PBXGroup;
-			children = (
-				F82875B91F7BB1B000E527BC /* DelegateProxy.h */,
-				F82875BA1F7BB1B000E527BC /* DelegateProxy.m */,
-				F82875BC1F7BB1B000E527BC /* PullToDismiss.swift */,
-				F82875BD1F7BB1B000E527BC /* ScrollViewDelegateProxy.swift */,
-				F82875BF1F7BB1B000E527BC /* Unavailable.swift */,
-			);
-			path = pulltodismiss;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -173,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				355DBF171E40EA4300671CDD /* Pulley.h in Headers */,
-				F82875C91F7BB2EA00E527BC /* DelegateProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +262,7 @@
 			files = (
 				F7D270C11F3218E30035D833 /* PulleyViewController+Nested.swift in Sources */,
 				355DBF201E40EA5C00671CDD /* PulleyPassthroughScrollView.swift in Sources */,
+				F86D3FA61F7D005D001F413F /* PullToDismiss.swift in Sources */,
 				355DBF211E40EA5F00671CDD /* PulleyViewController.swift in Sources */,
 				C6C51DDD1F5108980079B57F /* UIView+constrainToParent.swift in Sources */,
 			);
@@ -296,12 +274,8 @@
 			files = (
 				C6131BB41D30429E002F27F3 /* PrimaryTransitionTargetViewController.swift in Sources */,
 				C6DF73D51D2DE2B500735EBC /* PrimaryContentViewController.swift in Sources */,
-				F82875C01F7BB20B00E527BC /* PullToDismiss.swift in Sources */,
-				F82875C71F7BB28D00E527BC /* Unavailable.swift in Sources */,
 				C6DF73EA1D2DFE7F00735EBC /* DrawerContentViewController.swift in Sources */,
 				C6DF73D31D2DE2B500735EBC /* AppDelegate.swift in Sources */,
-				F82875C31F7BB24100E527BC /* ScrollViewDelegateProxy.swift in Sources */,
-				F82875C51F7BB28100E527BC /* DelegateProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +455,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.Pulley;
 				PRODUCT_NAME = PulleyDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pulley-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -497,7 +471,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.Pulley;
 				PRODUCT_NAME = PulleyDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "Pulley-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

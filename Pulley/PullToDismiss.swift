@@ -8,9 +8,13 @@
 
 import Foundation
 import UIKit
-protocol PullToDismissDelegate {
+public protocol PullToDismissDelegate {
     func addOffset(addOffset: CGFloat)
     func finishedDragging(withVelocity velocity: CGPoint)
+}
+
+public protocol PullParentDelegate {
+     func shouldScroll() -> Bool
 }
 open class PullToDismiss: NSObject {
 
@@ -19,8 +23,8 @@ open class PullToDismiss: NSObject {
         public static let dismissableHeightPercentage: CGFloat = 0.13
     }
 
-
-    var delegatePull: PullToDismissDelegate?
+    public var mainDelegate: PullParentDelegate?
+    public var delegatePull: PullToDismissDelegate?
     public var dismissAction: (() -> Void)?
     public weak var delegate: UIScrollViewDelegate? {
         didSet {
@@ -28,7 +32,6 @@ open class PullToDismiss: NSObject {
             if let delegate = delegate {
                 delegates.append(delegate)
             }
-            proxy = ScrollViewDelegateProxy(delegates: delegates)
         }
     }
     public var dismissableHeightPercentage: CGFloat = Defaults.dismissableHeightPercentage {
@@ -44,11 +47,7 @@ open class PullToDismiss: NSObject {
 
     private var __scrollView: UIScrollView?
 
-    private var proxy: ScrollViewDelegateProxy? {
-        didSet {
-            __scrollView?.delegate = proxy
-        }
-    }
+
 
     private var panGesture: UIPanGestureRecognizer?
     private var navigationBarHeight: CGFloat = 0.0
@@ -62,9 +61,8 @@ open class PullToDismiss: NSObject {
 
     public init(scrollView: UIScrollView, viewController: UIViewController, navigationBar: UIView? = nil) {
         super.init()
-        self.proxy = ScrollViewDelegateProxy(delegates: [self])
         self.__scrollView = scrollView
-        self.__scrollView?.delegate = self.proxy
+        scrollView.delegate = self
         self.viewController = viewController
         
         if let navigationBar = navigationBar ?? viewController.navigationController?.navigationBar {
@@ -80,7 +78,6 @@ open class PullToDismiss: NSObject {
             panGesture.view?.removeGestureRecognizer(panGesture)
         }
 
-        proxy = nil
         __scrollView?.delegate = nil
         __scrollView = nil
     }
@@ -148,7 +145,6 @@ open class PullToDismiss: NSObject {
         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
         if originY > dismissableHeight || originY > 0 && velocity.y < 0 {
             deleteBackgroundView()
-            proxy = nil
             _ = dismissAction?() ?? dismiss()
         } else if originY != 0.0 {
             UIView.perform(.delete, on: [], options: [.allowUserInteraction], animations: { [weak self] in
@@ -193,8 +189,16 @@ extension PullToDismiss: UIScrollViewDelegate {
                 updateViewPosition(offset: diff)
                 scrollView.contentOffset.y = -scrollView.contentInset.top
                 print("updateViewPosition \(diff)")
+            }else if(self.mainDelegate != nil && self.mainDelegate!.shouldScroll()){
+                    //delegate drag or scroll
+                    updateViewPosition(offset: diff)
+                    scrollView.contentOffset.y = -scrollView.contentInset.top
+                    print("-updateViewPosition \(diff)")
+                
             }
             previousContentOffsetY = scrollView.contentOffset.y
+        }else{
+
         }
     }
 
@@ -205,9 +209,39 @@ extension PullToDismiss: UIScrollViewDelegate {
     }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        finishDragging(withVelocity: velocity)
+        if(scrollView.contentOffset.y == 0){
+            finishDragging(withVelocity: velocity)
+        }
         dragging = false
         print("scrollViewWillEndDragging")
         previousContentOffsetY = 0.0
     }
 }
+
+public extension PullToDismiss {
+    @available(*, unavailable, renamed: "delegate")
+    public weak var delegateProxy: AnyObject? {
+        fatalError("\(#function) is no longer available")
+    }
+    
+    @available(*, unavailable, message: "unavailable")
+    public weak var scrollViewDelegate: UIScrollViewDelegate? {
+        fatalError("\(#function) is no longer available")
+    }
+    
+    @available(*, unavailable, message: "unavailable")
+    public weak var tableViewDelegate: UITableViewDelegate? {
+        fatalError("\(#function) is no longer available")
+    }
+    
+    @available(*, unavailable, message: "unavailable")
+    public weak var collectionViewDelegate: UICollectionViewDelegate? {
+        fatalError("\(#function) is no longer available")
+    }
+    
+    @available(*, unavailable, message: "unavailable")
+    public weak var collectionViewDelegateFlowLayout: UICollectionViewDelegateFlowLayout? {
+        fatalError("\(#function) is no longer available")
+    }
+}
+

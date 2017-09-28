@@ -8,6 +8,8 @@
 import Foundation
 
 extension PulleyViewController: PulleyDrawerViewControllerDelegate {
+
+    
     public func collapsedDrawerHeight() -> CGFloat {
         if let drawerVCCompliant = drawerContentViewController as? PulleyDrawerViewControllerDelegate {
             return drawerVCCompliant.collapsedDrawerHeight()

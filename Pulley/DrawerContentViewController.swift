@@ -9,12 +9,17 @@
 import UIKit
 import Pulley
 
-class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOffsetPullDelegate {
-    func mainScrollView(scrollview: UIScrollView) {
+class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOffsetPullDelegate,PullParentDelegate {
+
+    
+
+    func mainScrollView(scrollview: UIScrollView, viewController: PulleyViewController) {
         self.mainScrollView = scrollview
+        self.pulleyViewController = viewController
     }
     private var mainScrollView: UIScrollView?
     private var pullToDismiss: PullToDismiss?
+    private var pulleyViewController: PulleyViewController?
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -29,14 +34,20 @@ class DrawerContentViewController: UIViewController, PullToDismissDelegate,AddOf
         separatorHeightConstraint.constant = 1.0 / UIScreen.main.scale
         pullToDismiss = PullToDismiss(scrollView: tableView, viewController: self)
         pullToDismiss?.delegatePull = self
+        pullToDismiss?.mainDelegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    //MARK: - PullParentDelegate
+    func shouldScroll() -> Bool {
+        return self.pulleyViewController!.shouldScroll()
+    }
     
-    
+    //MARK: - PullToDismissDelegate
     var wasDragged: Bool = false
     func addOffset(addOffset: CGFloat){
         print("\(addOffset)")
