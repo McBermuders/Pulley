@@ -421,7 +421,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
         self.view.addSubview(primaryContentContainer)
         self.view.addSubview(backgroundDimmingView)
         self.view.addSubview(drawerScrollView)
-        
+        drawerScrollView.isScrollEnabled = false
         primaryContentContainer.constrainToParent()
         
         backgroundDimmingView.constrainToParent()

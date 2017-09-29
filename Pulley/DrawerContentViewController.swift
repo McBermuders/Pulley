@@ -86,7 +86,7 @@ extension DrawerContentViewController: PulleyDrawerViewControllerDelegate {
     
     func collapsedDrawerHeight() -> CGFloat
     {
-        return 0.0
+        return 68.0
     }
     
     func partialRevealDrawerHeight() -> CGFloat
