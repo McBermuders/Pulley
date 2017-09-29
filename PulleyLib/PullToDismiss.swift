@@ -93,10 +93,7 @@ open class PullToDismiss: NSObject {
     
     
     
-    private func updateBackgroundView(rate: CGFloat) {
-        print("updateBackgroundView")
-    }
-    
+
     private func deleteBackgroundView() {
         targetViewController?.view.clipsToBounds = true
     }
@@ -130,37 +127,13 @@ open class PullToDismiss: NSObject {
             addOffset = min(max(-0.01, addOffset), 0.01)
         }
         viewPositionY += addOffset
-        //targetViewController?.view.frame.origin.y = max(0.0, viewPositionY)
-        
         self.delegatePull?.addOffset(addOffset: addOffset)
-        let targetViewOriginY: CGFloat = targetViewController?.view.frame.origin.y ?? 0.0
-        let targetViewHeight: CGFloat = targetViewController?.view.frame.height ?? 0.0
-        let rate: CGFloat = (1.0 - (targetViewOriginY / (targetViewHeight * dismissableHeightPercentage)))
         
-        updateBackgroundView(rate: rate)
+
     }
     
     fileprivate func finishDragging(withVelocity velocity: CGPoint) {
         self.delegatePull?.finishedDragging(withVelocity: velocity)
-        /*
-         let originY = targetViewController?.view.frame.origin.y ?? 0.0
-         let dismissableHeight = (targetViewController?.view.frame.height ?? 0.0) * dismissableHeightPercentage
-         if originY > dismissableHeight || originY > 0 && velocity.y < 0 {
-         deleteBackgroundView()
-         _ = dismissAction?() ?? dismiss()
-         } else if originY != 0.0 {
-         UIView.perform(.delete, on: [], options: [.allowUserInteraction], animations: { [weak self] in
-         self?.targetViewController?.view.frame.origin.y = 0.0
-         }) { [weak self] finished in
-         if finished {
-         self?.deleteBackgroundView()
-         }
-         }
-         } else {
-         self.deleteBackgroundView()
-         }
-         viewPositionY = 0.0
-         */
     }
     
     private static func viewControllerFromScrollView(_ scrollView: UIScrollView) -> UIViewController? {
@@ -197,7 +170,7 @@ extension PullToDismiss: UIScrollViewDelegate {
                 //delegate drag or scroll
                 draggedUp = true
                 updateViewPosition(offset: diff)
-                scrollView.contentOffset.y = -scrollView.contentInset.top
+                scrollView.contentOffset.y = previousContentOffsetY
                 print("-updateViewPosition 2 \(diff)")
                 
             }
