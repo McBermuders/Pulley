@@ -135,9 +135,9 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
                 return
             }
 
-            controller.willMove(toParentViewController: nil)
+            controller.willMove(toParent: nil)
             controller.view.removeFromSuperview()
-            controller.removeFromParentViewController()
+            controller.removeFromParent()
         }
         
         didSet {
@@ -146,12 +146,12 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
                 return
             }
 
-            addChildViewController(controller)
+            addChild(controller)
             primaryContentContainer.addSubview(controller.view)
             
             controller.view.constrainToParent()
             
-            controller.didMove(toParentViewController: self)
+            controller.didMove(toParent: self)
 
             if self.isViewLoaded
             {
@@ -170,9 +170,9 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             }
             
 
-            controller.willMove(toParentViewController: nil)
+            controller.willMove(toParent: nil)
             controller.view.removeFromSuperview()
-            controller.removeFromParentViewController()
+            controller.removeFromParent()
         }
 
         didSet {
@@ -182,12 +182,12 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             }
 
 
-            addChildViewController(controller)
+            addChild(controller)
             drawerContentContainer.addSubview(controller.view)
             
             controller.view.constrainToParent()
             
-            controller.didMove(toParentViewController: self)
+            controller.didMove(toParent: self)
 
             if self.isViewLoaded
             {
@@ -391,7 +391,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
         drawerScrollView.delaysContentTouches = true
         drawerScrollView.canCancelContentTouches = true
         drawerScrollView.backgroundColor = UIColor.clear
-        drawerScrollView.decelerationRate = UIScrollViewDecelerationRateFast
+        drawerScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
         drawerScrollView.scrollsToTop = false
         drawerScrollView.touchDelegate = self
         
@@ -436,7 +436,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             assert(primaryContentContainerView != nil && drawerContentContainerView != nil, "When instantiating from Interface Builder you must provide container views with an embedded view controller.")
             
             // Locate main content VC
-            for child in self.childViewControllers
+            for child in self.children
             {
                 if child.view == primaryContentContainerView.subviews.first
                 {
@@ -474,7 +474,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             if primary.view.superview != nil && primary.view.superview != primaryContentContainer
             {
                 primaryContentContainer.addSubview(primary.view)
-                primaryContentContainer.sendSubview(toBack: primary.view)
+                primaryContentContainer.sendSubviewToBack(primary.view)
                 
                 primary.view.constrainToParent()
             }
@@ -486,7 +486,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
             if drawer.view.superview != nil && drawer.view.superview != drawerContentContainer
             {
                 drawerContentContainer.addSubview(drawer.view)
-                drawerContentContainer.sendSubview(toBack: drawer.view)
+                drawerContentContainer.sendSubviewToBack(drawer.view)
                 
                 drawer.view.constrainToParent()
             }
@@ -734,7 +734,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
     
     // MARK: Actions
     
-    func dimmingViewTapRecognizerAction(gestureRecognizer: UITapGestureRecognizer)
+    @objc func dimmingViewTapRecognizerAction(gestureRecognizer: UITapGestureRecognizer)
     {
         if gestureRecognizer == dimmingViewTapRecognizer
         {
@@ -747,7 +747,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
     
     // MARK: Propogate child view controller style / status bar presentation based on drawer state
     
-    override open var childViewControllerForStatusBarStyle: UIViewController? {
+    override open var childForStatusBarStyle: UIViewController? {
         get {
             
             if drawerPosition == .open {
@@ -758,7 +758,7 @@ open class PulleyViewController: UIViewController,PullParentDelegate {
         }
     }
     
-    override open var childViewControllerForStatusBarHidden: UIViewController? {
+    override open var childForStatusBarHidden: UIViewController? {
         get {
             if drawerPosition == .open {
                 return drawerContentViewController
